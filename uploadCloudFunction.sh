@@ -1,0 +1,1 @@
+"/Applications/wechatwebdevtools.app/Contents/MacOS/cli" cloud functions deploy --e cloud1-9gvikdew3ba3059d --n quickstartFunctions --r --project "/Volumes/D/zhongjian" --report_first --report

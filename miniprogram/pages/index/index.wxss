@@ -1,0 +1,128 @@
+page { 
+  background-color: #fff; 
+} 
+.search{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height:90rpx;
+  display: flex;
+  align-items: center;
+  padding: 24rpx;
+  font-size: 28rpx;
+  background-color: #fff;
+  z-index: 1;
+}
+.search-box{
+  flex: 1;
+  border: 1px solid #3E69FA;
+  border-radius: 30px;
+  padding: 12rpx 24rpx;
+  margin-right: 20rpx;
+}
+.search-input{
+  width: 100%;
+} 
+.goods{ 
+  padding: 24rpx 10rpx 24rpx 24rpx; 
+}
+.power{ 
+  padding: 18rpx 0;
+  border-bottom: 1rpx solid #f1f1f1;
+}
+.power-r{ 
+  position: relative; 
+  margin-left: 18rpx;
+  padding-right: 30rpx;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.power-info{
+  display: flex;
+  border-radius: 8rpx;
+}
+.power-img{ 
+  flex: 0 0 150px;
+  width: 150px; 
+  height: 180px; 
+  background-color: #eeeeee;
+  border-radius: 8rpx;
+}
+.distance{
+  margin-top: 12rpx;
+  font-size: 26rpx;
+  color: #aaa;
+}
+.address{
+  margin-top: 10rpx;
+  font-size: 26rpx; 
+  color: #aaa;
+}
+.power-price{
+  text-align: right;
+  color: #ff5000;
+}
+.addbtn{
+  position: fixed;
+  right: 15rpx;
+  bottom: 240rpx;
+  width: 100rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 28rpx;
+  border-radius: 100%;
+  background-color: #3E69FA;
+  text-align: center;
+  color: #fff;
+}
+.getOpen{
+  position: fixed;
+  right: 15rpx;
+  bottom: 120rpx;
+  width: 100rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 28rpx;
+  border-radius: 100%;
+  background-color: #3E69FA;
+  text-align: center;
+  color: #fff;
+}
+.power-del{
+  position: absolute;
+  right: 16rpx;
+  top: -10rpx;
+  font-size: 36rpx;
+  color: #aaa;
+}
+.power-edit{
+  position: absolute;
+  right: 16rpx;
+  top: 0rpx;
+  font-size: 36rpx;
+  color: #3E69FA;
+  font-size: 30rpx;
+}
+.roomTag{
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.tag{
+  margin-bottom: 5rpx;
+  margin-right: 4rpx;
+  padding: 2rpx 8rpx;
+  background-color: #ddd;
+  color: #fff;
+  border-radius: 4rpx;
+}
+.empty{
+  margin-top: 50rpx;text-align: center;color: #aaa;
+}
+.emptyImg{
+  width: 200rpx;
+  height: 150rpx;
+  margin-top: 200rpx;
+}

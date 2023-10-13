@@ -1,0 +1,113 @@
+<!--pages/addHotel/index.wxml-->
+<view>
+  <view style="margin: 50rpx 80rpx;">
+    <form catchsubmit="formSubmit" catchreset="formReset">
+      <view class="page-section">
+        <view class="page-section-title">所在城市</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="picker" style="color: #3E69FA;margin: 16rpx 0 16rpx">
+                  {{ city  }}
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="page-section-title">酒店名称</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd" style="margin: 30rpx 0" > 
+              {{ name }}
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="page-section-title">地址</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd" style="margin: 30rpx 0" > 
+              {{ address }}
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view>
+        <map id="map"
+          class="map"
+          style="margin-bottom: 80rpx;"
+          markers="{{markers}}" 
+          longitude="{{longitude}}" latitude="{{latitude}}">
+        </map>
+      </view>
+
+      <view class="page-section">
+        <view class="page-section-title">酒店图片</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <image wx:if="{{tempFileURL}}" class="power-img" mode="scaleToFill" src="{{tempFileURL}}">
+            </image> 
+            <view style="margin: 16rpx 0;color: #aaa;" wx:else>暂无图片</view>
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="page-section-title">联系人</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd" style="margin: 30rpx 0" >
+              {{ person }}
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="page-section-title">联系方式</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd" style="margin: 30rpx 0" >
+              {{ personTel }}
+            </view>
+          </view>
+        </view>
+      </view>
+
+
+      <view class="room" wx:key="roomType" wx:for="{{roomTypeList}}" wx:for-item="room">
+        房型{{index + 1}} 
+        <view wx:if="{{ roomTypeList.length > 1 ? true: false }}" class="room-del" bindtap="onDel"  data-index="{{index}}">×</view>
+        <view>
+          <view class="weui-cells weui-cells_after-title">
+           <view class="weui-cell__bd roomType">
+             <text class="roomType-label">房型: </text>
+             {{ room.roomType }}
+            </view>
+            <view class="weui-cell__bd roomType">
+              <text class="roomType-label">价格: </text>  
+              {{ room.price }}
+              </view>
+          </view>
+         </view>
+      </view> 
+
+      <view class="page-section">
+        <view class="page-section-title">备注</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd" style="margin: 30rpx 0" >
+              {{ remark }}
+            </view>
+          </view>
+        </view>
+      </view> 
+      <!-- <view class="btn-area" style="display: flex;margin-top: 150rpx;"> 
+        <button type="primary" formType="submit">预定</button>
+      </view> -->
+    </form>
+  </view>
+</view>

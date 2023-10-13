@@ -1,0 +1,134 @@
+<!--pages/addHotel/index.wxml-->
+<view>
+  <view style="margin: 50rpx 80rpx;">
+    <form catchsubmit="formSubmit" catchreset="formReset"> 
+      <view class="page-section">
+        <view class="page-section-title">选择城市</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <picker bindchange="bindCityPickerChange"  value="{{index}}" range="{{cityList}}">
+            <view class="picker" style="color: #3E69FA;margin: 16rpx 0 16rpx">
+                  {{ city ? city : '请选择' }}
+            </view>
+        </picker> 
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="page-section-title">酒店名称</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd" style="margin: 30rpx 0" > 
+             <view style="display: flex;align-items: flex-start;"> 
+              <textarea value="{{name}}" auto-height style="flex: 1;"  bindblur="bindKeyblur" bindinput="bindKeyInput" bindconfirm="bindKeyblur"  bindkeyboardheightchange="bindkeyboardheightchange" name="name"  placeholder="请输入关键字查询" />
+              <!-- <text wx:if="{{!showPicker}}" bindtap="buttonSearch">查询</text> -->
+              <picker wx:if="{{showPicker}}" bindchange="bindPickerChange" range-key="title" 
+              value="{{index}}" range="{{array}}">
+                <view class="picker" style="margin-top: -1rpx;color: #07c160">
+                  选择
+                </view>
+              </picker>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="page-section-title">地址</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd" style="margin: 30rpx 0" >
+              <textarea auto-height disabled value="{{address}}" class="weui-input" name="address" placeholder="请输入名称" />
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view>
+        <map id="map"
+          class="map"
+          style="margin-bottom: 80rpx;"
+          markers="{{markers}}"
+          bindmarkertap="bindmarkertap"
+          longitude="{{longitude}}" latitude="{{latitude}}">
+        </map>
+      </view>
+
+      <view class="page-section">
+        <view class="page-section-title">酒店图片</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <image wx:if="{{tempFilePaths}}" class="power-img" mode="scaleToFill" src="{{tempFilePaths}}">
+            </image>
+            <view bindtap="uploadImg" class="weui-cell__bd" style="margin: 30rpx 0;color: #07c160;" >
+              {{ !tempFilePaths ? '请上传图片' : '重新上传' }}
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="page-section-title">联系人</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd" style="margin: 30rpx 0" >
+              <input class="weui-input" value="{{person}}" name="person"  bindinput="bindPersonInput"  placeholder="请输入联系人" />
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="page-section-title">联系方式</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd" style="margin: 30rpx 0" >
+              <input class="weui-input" value="{{personTel}}" name="personTel" bindinput="bindTelInput" placeholder="请输入联系方式" />
+            </view>
+          </view>
+        </view>
+      </view>
+
+
+      <view class="room" wx:key="roomType" wx:for="{{roomTypeList}}" wx:for-item="room">
+        房型{{index + 1}} 
+        <view wx:if="{{ roomTypeList.length > 1 ? true: false }}" class="room-del" bindtap="onDel"  data-index="{{index}}">×</view>
+        <view>
+          <view class="weui-cells weui-cells_after-title">
+           <view class="weui-cell__bd roomType">
+             <text class="roomType-label">房型: </text>
+              <input data-index="{{index}}"  
+              class="weui-input" type="text"  bindinput="bindRoomTypeInput" value="{{room.roomType}}"   placeholder="请输入房型" confirm-type="done"/>
+            </view>
+            <view class="weui-cell__bd roomType">
+              <text class="roomType-label">价格: </text>  
+              <input data-index="{{index}}"  class="weui-input" bindinput="bindRoomPriceInput" value="{{room.price}}" type="digit"   placeholder="请输入价格" />
+              </view>
+          </view>
+         </view>
+      </view>
+      <view style="margin-top: 40rpx;margin-bottom: 40rpx;">
+        <view class="addbtn" bindtap="addRoomType">新增房型</view>
+      </view>
+
+      <view class="page-section">
+        <view class="page-section-title">备注</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd" style="margin: 30rpx 0" >
+              <textarea value="{{ remark }}" name="remark" auto-height placeholder="请输入备注" /> 
+            </view>
+          </view>
+        </view>
+      </view>
+
+
+      <view class="btn-area" style="display: flex;margin-top: 150rpx;">
+        <button formType="reset" class='resetbtn' style="margin-right: 20rpx;">重置</button>
+        <button type="primary" formType="submit">提交</button>
+      </view>
+    </form>
+  </view>
+</view>

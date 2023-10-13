@@ -1,0 +1,55 @@
+<!--index.wxml-->
+<view style="height: 100vh;overflow: hidden;">
+  <view class="search">
+     <view class="search-box" style="display: flex;align-items: center;">
+      <picker bindchange="bindPickerChange"  value="{{index}}" range="{{cityList}}">
+          <view class="picker" style="color: #3E69FA;margin-right: 16rpx;">
+                {{ city }}
+          </view>
+        </picker> 
+      <input style="flex: 1;margin-right: 20rpx;" value="{{inputValue}}" bindinput="bindKeyInput" cursor-color="#3E69FA" type='text' class="weui-input"   placeholder="请输入关键词查询" bindconfirm="getList"	confirm-type="search"/>
+      <view bindtap="clear" wx:if="{{inputValue}}">×</view>
+      </view> 
+      <view class="search-btn" bindtap="onSearch">搜索</view>
+  </view> 
+ <view class="goods" > 
+  <scroll-view scroll-y="true" style="height: 100vh"  bindscrolltolower="lower" > 
+         <view wx:if="{{!loading && !powerList.length}}" class="empty"> 
+           <view> 
+           <image class="emptyImg" mode="aspectFit" src=" ../../images/empty.png"></image>
+           </view>
+           <view> 暂无数据</view>
+         </view>
+         <view wx:else style="margin-top: 110rpx;"></view> 
+          <view class="power" wx:key="title" wx:for="{{powerList}}" wx:for-item="power">
+          <view  class="power-info" data-index="{{index}}" >
+            <view style="position: relative;">
+              <image class="power-img" mode="aspectFill" src=" {{power.tempFileURL}}"></image>
+              <view wx:if="{{isSuper}}" bind:tap="jumpEdit" class="power-edit"  data-id="{{power._id}}">编辑</view>
+            </view>
+            <view class="power-r"> 
+            <view wx:if="{{isSuper}}" class="power-del" bindtap="onDel" data-fileid="{{power.fileID}}" data-id="{{power._id}}" >×</view>
+            <view style="flex: 1;" bindtap="jumpDetail" id="{{power._id}}">
+              <view class="power-title"> {{ power.name }} </view>
+              <view class="distance roomTag" wx:if="{{ power.roomTypeList.length }}">
+               <view>房型：</view>
+               <view class="tag"  wx:key="roomType" wx:for="{{power.roomTypeList}}" wx:for-item="room">
+               {{ room.roomType  }}
+               </view>
+              </view>
+              <view class="address">{{ power.address }}</view>
+            </view>  
+            <view class="power-price"> 
+              <span>¥</span>  <span style="font-size: 44rpx;">{{ power.minPrice || 0 }}</span>
+              <span>起</span>
+            </view>
+            </view>
+          <view>
+          </view>
+          </view>
+        </view> 
+  </scroll-view>
+  </view> 
+  <view class="addbtn" bindtap="jumpPage" wx:if="{{isSuper}}">新增</view> 
+  <cloud-tip-modal showUploadTipProps="{{showUploadTip}}"></cloud-tip-modal>
+</view>

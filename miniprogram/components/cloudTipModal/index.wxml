@@ -1,0 +1,14 @@
+<!--miniprogram/components/cloudTipModal/index.wxml-->
+<view class="install_tip" wx:if="{{showUploadTip}}">
+  <view class="install_tip_back"></view>
+  <view class="install_tip_detail">
+    <view style="margin-bottom: 20rpx;"> 请填写您的昵称 </view>
+   <view style="display: flex;">
+     <view class="nickname"> 
+      <input type="nickname" bindinput="bindKeyInput"  value="{{nickname}}" class="weui-input" placeholder="请输入昵称"/>
+     </view>
+     <button style="width: 30%;" type="primary" bind:tap="submitForm">确定</button>
+   </view>
+   <view style="text-align: center;margin-top: 40rpx;color: #07c160;" bind:tap="onChangeShowUploadTip">跳过，暂时不填</view>
+  </view>
+</view>
